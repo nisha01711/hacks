@@ -13,10 +13,10 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 function downloadCsv() {
   const csv = [
     "Metric,Value",
-    "Competitor Price Trend,Declining by 8% average",
+    "Marketplace Price Trend,Declining by 8% average",
     "Review Sentiment,Positive 62%",
-    "Market Opportunities,High in pricing and retention",
-    "Recommended Actions,Run promo and improve material quality",
+    "Customer Value Signals,High across savings and quality",
+    "Recommended Actions,Set alerts and buy on next discount window",
   ].join("\n");
 
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -36,13 +36,13 @@ export default function ReportsPage() {
   return (
     <ProtectedRoute>
       <AppShell
-        title="Weekly Report"
-        subtitle="Executive summary of pricing, sentiment, and market opportunity trends."
+        title="Shopping Report"
+        subtitle="Your weekly summary of price trends, review sentiment, and smart buying actions."
       >
         <Card>
           <CardHeader>
             <CardTitle>Report Actions</CardTitle>
-            <CardDescription>Export snapshots for leadership and growth teams.</CardDescription>
+            <CardDescription>Export your shopping intelligence snapshot.</CardDescription>
           </CardHeader>
           <div className="flex flex-wrap gap-3">
             <Button onClick={exportPdf}>Export PDF</Button>
@@ -59,13 +59,13 @@ export default function ReportsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Recommended Actions</CardTitle>
+            <CardTitle>Recommended Next Steps</CardTitle>
           </CardHeader>
           <div className="grid gap-3 md:grid-cols-2 text-sm text-slate-700 dark:text-slate-200">
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Reduce price by 5% on key SKUs this week.</p>
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Improve product material quality in next batch.</p>
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Launch battery-life focused campaign messaging.</p>
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Retarget users who viewed but did not convert.</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Buy from the platform with the best value score this week.</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Set a price alert before checking out high-ticket items.</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Prioritize products with positive quality sentiment.</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Compare bundle unit prices before choosing combo offers.</p>
           </div>
         </Card>
       </AppShell>

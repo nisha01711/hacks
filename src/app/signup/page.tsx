@@ -1,38 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { validatePassword } from "@/lib/auth";
 
 export default function SignupPage() {
   const router = useRouter();
-  const { signup, isAuthenticated, loading } = useAuth();
+  const { signup } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (!loading && isAuthenticated) {
-      router.replace("/dashboard");
-    }
-  }, [isAuthenticated, loading, router]);
+  const passwordCheck = validatePassword(password);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError("");
+
+    if (!passwordCheck.valid) {
+      setError(`Password must include: ${passwordCheck.errors.join(", ")}.`);
+      return;
+    }
+
     setSubmitting(true);
 
     const result = await signup({ name, email, password });
 
     if (result.success) {
-      router.push("/dashboard");
+      router.push("/login");
       return;
     }
 
+    setError(result.message ?? "Unable to create account.");
     setSubmitting(false);
   }
 
@@ -79,7 +85,12 @@ export default function SignupPage() {
               placeholder="Create a strong password"
               required
             />
+            <div className="mt-2 rounded-lg bg-slate-100 px-3 py-2 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              Rules: 8+ chars, uppercase, lowercase, number, special character, and no spaces.
+            </div>
           </div>
+
+          {error ? <p className="text-sm text-rose-600">{error}</p> : null}
 
           <Button type="submit" className="w-full" disabled={submitting}>
             {submitting ? "Creating account..." : "Sign Up"}

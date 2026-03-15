@@ -4,11 +4,44 @@ export type AuthUser = {
   password: string;
 };
 
+export type PasswordValidationResult = {
+  valid: boolean;
+  errors: string[];
+};
+
 const USER_KEY = "marketsense_user";
 const SESSION_KEY = "marketsense_session";
 
 function isBrowser() {
   return typeof window !== "undefined";
+}
+
+export function validatePassword(password: string): PasswordValidationResult {
+  const errors: string[] = [];
+
+  if (password.length < 8) {
+    errors.push("At least 8 characters");
+  }
+  if (!/[A-Z]/.test(password)) {
+    errors.push("At least one uppercase letter");
+  }
+  if (!/[a-z]/.test(password)) {
+    errors.push("At least one lowercase letter");
+  }
+  if (!/\d/.test(password)) {
+    errors.push("At least one number");
+  }
+  if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
+    errors.push("At least one special character");
+  }
+  if (/\s/.test(password)) {
+    errors.push("No spaces allowed");
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+  };
 }
 
 export function getStoredUser(): AuthUser | null {
@@ -24,9 +57,22 @@ export function getStoredUser(): AuthUser | null {
 }
 
 export function registerUser(user: AuthUser) {
-  if (!isBrowser()) return;
+  if (!isBrowser()) {
+    return { success: false, message: "Browser storage is unavailable." };
+  }
+
+  const passwordValidation = validatePassword(user.password);
+  if (!passwordValidation.valid) {
+    return {
+      success: false,
+      message: `Password must include: ${passwordValidation.errors.join(", ")}.`,
+    };
+  }
+
   localStorage.setItem(USER_KEY, JSON.stringify(user));
-  localStorage.setItem(SESSION_KEY, "true");
+  // Registration creates account only; login should create a session.
+  localStorage.removeItem(SESSION_KEY);
+  return { success: true };
 }
 
 export function loginUser(email: string, password: string) {

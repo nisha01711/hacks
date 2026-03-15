@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MarketSense AI",
-  description: "AI-powered competitive intelligence platform for e-commerce sellers.",
+  description: "AI-powered shopping assistant for comparing prices, reviews, and value across marketplaces.",
 };
 
 export default function RootLayout({

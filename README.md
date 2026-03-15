@@ -64,3 +64,28 @@ npm run build
 - `src/context/AuthContext.tsx` - auth provider and state
 - `src/lib/auth.ts` - localStorage auth helpers
 - `src/lib/mock-data.ts` - mock API-style frontend data
+
+## Database Strength (Jury)
+
+Backend now exposes live MongoDB health and data-quality evidence:
+
+- `GET /database/health`
+- `GET /dashboard`
+- `GET /sentiment?keyword=<product>`
+
+`/database/health` includes:
+
+- connectivity status (`ok`, `degraded`, `down`)
+- response latency in milliseconds
+- document volume in `pricing`
+- unique keyword and job coverage
+- live-signal rows vs fallback rows
+- platform coverage distribution
+- per-collection document counts and latest scrape timestamp
+
+MongoDB performance indexes are automatically created at backend startup for:
+
+- `(job_id, platform, url)` unique upsert safety
+- `(keyword, scraped_at)` query speed
+- `(platform, scraped_at)` query speed
+- `(scraped_at)` recency reads

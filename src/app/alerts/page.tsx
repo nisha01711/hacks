@@ -4,28 +4,28 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 const alertExamples = [
-  "Competitor reduced price by 12%.",
-  "Competitor launched improved version.",
-  "Competitor reviews increased rapidly.",
+  "Price dropped by 12% on your watched sunscreen.",
+  "A top-rated listing is now available with same-day delivery.",
+  "Customer ratings improved rapidly for your tracked product.",
 ];
 
 export default function AlertsPage() {
   return (
     <ProtectedRoute>
       <AppShell
-        title="Competitor Alerts"
-        subtitle="Stay updated with high-impact competitor moves in real time."
+        title="Shopping Alerts"
+        subtitle="Stay updated on price drops, rating shifts, and useful marketplace updates."
       >
         <AlertsList alerts={alertExamples} />
 
         <Card>
           <CardHeader>
-            <CardTitle>Alert Feed Health</CardTitle>
+            <CardTitle>Alert Overview</CardTitle>
           </CardHeader>
           <div className="grid gap-3 sm:grid-cols-3 text-sm">
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Critical Alerts: 5</p>
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Medium Alerts: 13</p>
-            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Low Alerts: 19</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">High Priority: 5</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Medium Priority: 13</p>
+            <p className="rounded-lg bg-slate-100 p-3 dark:bg-slate-800">Low Priority: 19</p>
           </div>
         </Card>
       </AppShell>

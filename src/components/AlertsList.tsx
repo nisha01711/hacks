@@ -10,7 +10,7 @@ export function AlertsList({ alerts }: { alerts: string[] }) {
 
       {alerts.length === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
-          No alerts right now. We will notify you when competitors move.
+          No alerts right now. We will notify you when prices or ratings change.
         </div>
       ) : (
         <div className="space-y-3">

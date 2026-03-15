@@ -1,8 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { dashboardMetrics } from "@/lib/mock-data";
+import { DashboardMetric } from "@/lib/dashboard";
 
-export function DashboardCards({ isLoading = false }: { isLoading?: boolean }) {
+export function DashboardCards({ metrics, isLoading = false }: { metrics: DashboardMetric[]; isLoading?: boolean }) {
   if (isLoading) {
     return (
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -15,7 +15,7 @@ export function DashboardCards({ isLoading = false }: { isLoading?: boolean }) {
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {dashboardMetrics.map((metric) => (
+      {metrics.map((metric) => (
         <Card key={metric.label}>
           <p className="text-sm text-slate-500 dark:text-slate-400">{metric.label}</p>
           <div className="mt-3 flex items-center justify-between">

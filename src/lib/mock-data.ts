@@ -5,18 +5,18 @@ export type DashboardMetric = {
 };
 
 export const dashboardMetrics: DashboardMetric[] = [
-  { label: "Products Monitored", value: "148", change: "+12%" },
-  { label: "Competitors Tracked", value: "37", change: "+6%" },
-  { label: "Price Alerts", value: "24", change: "+18%" },
-  { label: "AI Insights Generated", value: "312", change: "+29%" },
+  { label: "Products Compared", value: "148", change: "+12%" },
+  { label: "Deals Tracked", value: "37", change: "+6%" },
+  { label: "Price Drop Alerts", value: "24", change: "+18%" },
+  { label: "Smart Tips Generated", value: "312", change: "+29%" },
 ];
 
 export const priceTrendData = [
-  { week: "W1", yourPrice: 109, competitorA: 119, competitorB: 114 },
-  { week: "W2", yourPrice: 104, competitorA: 115, competitorB: 112 },
-  { week: "W3", yourPrice: 102, competitorA: 110, competitorB: 108 },
-  { week: "W4", yourPrice: 99, competitorA: 108, competitorB: 105 },
-  { week: "W5", yourPrice: 97, competitorA: 104, competitorB: 103 },
+  { week: "W1", amazon: 109, flipkart: 119, meesho: 114 },
+  { week: "W2", amazon: 104, flipkart: 115, meesho: 112 },
+  { week: "W3", amazon: 102, flipkart: 110, meesho: 108 },
+  { week: "W4", amazon: 99, flipkart: 108, meesho: 105 },
+  { week: "W5", amazon: 97, flipkart: 104, meesho: 103 },
 ];
 
 export const sentimentData = [
@@ -26,30 +26,30 @@ export const sentimentData = [
 ];
 
 export const opportunityData = [
-  { category: "Pricing", score: 86 },
+  { category: "Savings", score: 86 },
   { category: "Quality", score: 72 },
-  { category: "Marketing", score: 91 },
-  { category: "Retention", score: 68 },
+  { category: "Value", score: 91 },
+  { category: "Trust", score: 68 },
 ];
 
 export const recentAlerts = [
-  "Competitor reduced price by 12% on flagship SKU.",
-  "Competitor launched improved version with faster charging.",
-  "Competitor reviews increased 34% in the last 7 days.",
-  "Category ad spend spiked 18% week-over-week.",
+  "Sunscreen price dropped 12% on Amazon for the low tier.",
+  "Flipkart launched a new combo pack with extra quantity.",
+  "Meesho listing crossed 34% higher reviews this week.",
+  "Weekend cashback offers are now live across key categories.",
 ];
 
 export const competitorActivity = [
-  "BrandNova added 3 new products in Electronics.",
-  "SwiftCart changed listing title for top-selling SKU.",
-  "StoreAxis entered 2 new marketplaces this week.",
+  "Amazon updated delivery promise to same-day for selected products.",
+  "Flipkart increased discount depth in top-rated listings.",
+  "Meesho listings added more budget-friendly bundle options.",
 ];
 
 export const strategyRecommendations = [
-  "Reduce price by 5% for weekend campaigns to gain Buy Box share.",
-  "Improve product material quality for durability-related complaints.",
-  "Launch a promotional campaign targeting high-conversion keywords.",
-  "Shift marketing focus to battery life messaging in creatives.",
+  "Buy from the store with the best rating when the price gap is less than 5%.",
+  "Set a price alert first, then purchase during the next discount cycle.",
+  "Prefer bundles only when per-unit price is lower than regular packs.",
+  "Use review sentiment to avoid products with repeated quality complaints.",
 ];
 
 export type ProductRow = {
